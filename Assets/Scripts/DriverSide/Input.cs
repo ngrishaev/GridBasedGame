@@ -5,30 +5,30 @@ namespace DriverSide
 {
     public class Input : MonoBehaviour
     {
-        private Player _player;
+        private IPlayerMover _mover;
 
-        public void Construct(Player player)
+        public void Construct(IPlayerMover mover)
         {
-            _player = player;
+            _mover = mover;
         }
         
         private void Update()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.W))
             {
-                _player.MoveUp();
+                _mover.MoveUp();
             }
             else if (UnityEngine.Input.GetKeyDown(KeyCode.S))
             {
-                _player.MoveDown();
+                _mover.MoveDown();
             }
             else if (UnityEngine.Input.GetKeyDown(KeyCode.A))
             {
-                _player.MoveLeft();
+                _mover.MoveLeft();
             }
             else if (UnityEngine.Input.GetKeyDown(KeyCode.D))
             {
-                _player.MoveRight();
+                _mover.MoveRight();
             }
         }
     }

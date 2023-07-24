@@ -1,4 +1,5 @@
 using DriverSide.Services;
+using Game;
 using UnityEngine;
 using Input = DriverSide.Input;
 
@@ -12,12 +13,14 @@ namespace Bootstrap
         private void Start()
         {
             var game = new Game.Game();
-            _input.Construct(game.Player);
+            var playerMover = new PlayerMoveProcessor(game.Player, game.GameEntities);
+            _input.Construct(playerMover);
             
             var playerPrefab = _entityToPrefab.PlayerPrefab;
             var playerView = Instantiate(playerPrefab);
             playerView.Construct(game.Player);
             playerView.Redraw();
+            
             game.Player.Moved += playerView.Redraw;
         }
     }
