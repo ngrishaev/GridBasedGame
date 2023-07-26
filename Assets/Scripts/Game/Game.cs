@@ -4,11 +4,21 @@ namespace Game
 {
     public class Game
     {
+        public readonly Level Level;
+
+        public Game()
+        {
+            Level = new Level();
+        }
+    }
+    
+    public class Level
+    {
         public readonly List<Entity> GameEntities;
         public readonly Player Player;
         public List<Obstacle> Obstacles { get; set; }
 
-        public Game()
+        public Level()
         {
             Player = new Player(3, 3);
             Obstacles = new List<Obstacle>

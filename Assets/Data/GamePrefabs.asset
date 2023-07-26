@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GamePrefabs
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 7355428935271680203, guid: aa60a8ff34d6c2e4bac24f0dc34e9232, type: 3}
-  _obstaclePrefab: {fileID: 6825258515342426537, guid: 271416f1c7e4c424dba8956aa9ceb0a9, type: 3}
+  _obstaclePrefab: {fileID: -58778028847663768, guid: 271416f1c7e4c424dba8956aa9ceb0a9, type: 3}

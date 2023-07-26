@@ -13,15 +13,24 @@ namespace Bootstrap
         private void Start()
         {
             var game = new Game.Game();
-            var playerMover = new PlayerMoveProcessor(game.Player, game.GameEntities);
+            var level = game.Level;
+            var playerMover = new PlayerMoveProcessor(level.Player, level.GameEntities);
             _input.Construct(playerMover);
             
             var playerPrefab = _entityToPrefab.PlayerPrefab;
             var playerView = Instantiate(playerPrefab);
-            playerView.Construct(game.Player);
-            playerView.Redraw();
+            playerView.Construct(level.Player);
+            playerView.Draw();
             
-            game.Player.Moved += playerView.Redraw;
+            var obstaclePrefab = _entityToPrefab.ObstaclePrefab;
+            foreach (var obstacle in level.Obstacles)
+            {
+                var obstacleView = Instantiate(obstaclePrefab);
+                obstacleView.Construct(obstacle);
+                obstacleView.Draw();
+            }
+            
+            level.Player.Moved += playerView.Draw;
         }
     }
 }

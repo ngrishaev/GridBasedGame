@@ -14,7 +14,7 @@ namespace DriverSide.Views
             _player = player;
         }
 
-        public void Redraw()
+        public void Draw()
         {
             _transform.position = new Vector3(_player.position.x, _player.position.y) + Vector3.one / 2;
         }
