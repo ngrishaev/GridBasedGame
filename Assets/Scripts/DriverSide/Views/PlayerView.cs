@@ -1,5 +1,4 @@
-﻿using Game;
-using Game.Entities;
+﻿using Game.Entities;
 using UnityEngine;
 
 namespace DriverSide.Views
