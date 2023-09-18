@@ -36,8 +36,9 @@ namespace Game
             
             return entity switch
             {
-                null => true,
                 Obstacle => false,
+                Box => false,
+                null => true,
                 _ => true
             };
         }
