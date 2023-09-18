@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -17,6 +18,7 @@ namespace Game
         public readonly List<Entity> GameEntities;
         public readonly Player Player;
         public List<Obstacle> Obstacles { get; set; }
+        public List<Box> Boxes { get; set; }
 
         public Level()
         {
@@ -33,7 +35,15 @@ namespace Game
                 new Obstacle(9, 8),
             };
 
-            GameEntities = new List<Entity>(Obstacles) { Player };
+            Boxes = new List<Box>()
+            {
+                new Box(4, 3)
+            };
+
+            GameEntities = new List<Entity>();
+            GameEntities.AddRange(Obstacles);
+            GameEntities.AddRange(Boxes);
+            GameEntities.Add(Player);
         }
     }
 }

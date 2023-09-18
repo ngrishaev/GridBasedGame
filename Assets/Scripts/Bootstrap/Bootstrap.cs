@@ -17,11 +17,24 @@ namespace Bootstrap
             var playerMover = new PlayerMoveProcessor(level.Player, level.GameEntities);
             _input.Construct(playerMover);
             
-            var playerPrefab = _entityToPrefab.PlayerPrefab;
-            var playerView = Instantiate(playerPrefab);
-            playerView.Construct(level.Player);
-            playerView.Draw();
-            
+            SpawnPlayer(level);
+            SpawnObstacles(level);
+            SpawnBoxes(level);
+        }
+
+        private void SpawnBoxes(Level level)
+        {
+            var boxPrefab = _entityToPrefab.Box;
+            foreach (var box in level.Boxes)
+            {
+                var boxView = Instantiate(boxPrefab);
+                boxView.Construct(box);
+                boxView.Draw();
+            }
+        }
+
+        private void SpawnObstacles(Level level)
+        {
             var obstaclePrefab = _entityToPrefab.ObstaclePrefab;
             foreach (var obstacle in level.Obstacles)
             {
@@ -29,7 +42,14 @@ namespace Bootstrap
                 obstacleView.Construct(obstacle);
                 obstacleView.Draw();
             }
-            
+        }
+
+        private void SpawnPlayer(Level level)
+        {
+            var playerPrefab = _entityToPrefab.PlayerPrefab;
+            var playerView = Instantiate(playerPrefab);
+            playerView.Construct(level.Player);
+            playerView.Draw();
             level.Player.Moved += playerView.Draw;
         }
     }

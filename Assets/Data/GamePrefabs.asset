@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 7355428935271680203, guid: aa60a8ff34d6c2e4bac24f0dc34e9232, type: 3}
   _obstaclePrefab: {fileID: -58778028847663768, guid: 271416f1c7e4c424dba8956aa9ceb0a9, type: 3}
+  _box: {fileID: 6074966518367925798, guid: a313831d71a4c59488920fefeb22218f, type: 3}
