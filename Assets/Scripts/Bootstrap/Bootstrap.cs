@@ -30,6 +30,7 @@ namespace Bootstrap
                 var boxView = Instantiate(boxPrefab);
                 boxView.Construct(box);
                 boxView.Draw();
+                box.Moved += boxView.Draw;
             }
         }
 

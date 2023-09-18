@@ -16,7 +16,7 @@ namespace DriverSide.Views
 
         public void Draw()
         {
-            _transform.position = new Vector3(_box.position.x, _box.position.y) + Vector3.one / 2;
+            _transform.position = new Vector3(_box.Position.x, _box.Position.y) + Vector3.one / 2;
         }
     }
 }

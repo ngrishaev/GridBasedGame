@@ -5,6 +5,7 @@ namespace Game
 {
     public interface IMovable
     {
+        Vector2 Position { get; }
         void MoveTo(Vector2 newPosition);
         event Action Moved;
     }
@@ -18,10 +19,10 @@ namespace Game
         {
             Health = 3;
         }
-
+        
         public void MoveTo(Vector2 newPosition)
         {
-            position = newPosition;
+            Position = newPosition;
             Moved?.Invoke();
         }
     }

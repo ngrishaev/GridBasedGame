@@ -15,10 +15,10 @@ namespace Game
             _entities = entities;
         }
 
-        public void MoveUp() => TryMove(_player.position + Vector2.up);
-        public void MoveDown() => TryMove(_player.position + Vector2.down);
-        public void MoveLeft() => TryMove(_player.position + Vector2.left);
-        public void MoveRight() => TryMove(_player.position + Vector2.right);
+        public void MoveUp() => TryMove(_player.Position + Vector2.up);
+        public void MoveDown() => TryMove(_player.Position + Vector2.down);
+        public void MoveLeft() => TryMove(_player.Position + Vector2.left);
+        public void MoveRight() => TryMove(_player.Position + Vector2.right);
 
         private void TryMove(Vector2 newPosition)
         {
@@ -28,7 +28,7 @@ namespace Game
 
         private MoveAction GetMoveAction(Player player, Vector2 position)
         {
-            var entityIndex = _entities.FindIndex(e => e.position == position);
+            var entityIndex = _entities.FindIndex(e => e.Position == position);
             if (entityIndex == -1)
                 return new MoveOntoEmptyCell(player, position);
             
@@ -37,7 +37,7 @@ namespace Game
             return entity switch
             {
                 Obstacle => new EmptyAction(),
-                Box => new EmptyAction(),
+                Box box => new PushTargetFromPosition(position, box, player),
                 null => new MoveOntoEmptyCell(player, position),
                 _ => new MoveOntoEmptyCell(player, position)
             };
