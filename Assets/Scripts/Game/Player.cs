@@ -3,7 +3,13 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Player : Entity
+    public interface IMovable
+    {
+        void MoveTo(Vector2 newPosition);
+        event Action Moved;
+    }
+
+    public class Player : Entity, IMovable
     {
         public event Action Moved;
         public int Health { get; private set; }

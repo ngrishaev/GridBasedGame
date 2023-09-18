@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.MoveActions;
 using UnityEngine;
 
 namespace Game
@@ -21,25 +22,24 @@ namespace Game
 
         private void TryMove(Vector2 newPosition)
         {
-            if (IsPositionAvailable(newPosition)) 
-                _player.MoveTo(newPosition);
+            GetMoveAction(_player, newPosition).Execute();
         }
 
 
-        private bool IsPositionAvailable(Vector2 position)
+        private MoveAction GetMoveAction(Player player, Vector2 position)
         {
             var entityIndex = _entities.FindIndex(e => e.position == position);
             if (entityIndex == -1)
-                return true;
+                return new MoveOntoEmptyCell(player, position);
             
             var entity = _entities[entityIndex];
             
             return entity switch
             {
-                Obstacle => false,
-                Box => false,
-                null => true,
-                _ => true
+                Obstacle => new EmptyAction(),
+                Box => new EmptyAction(),
+                null => new MoveOntoEmptyCell(player, position),
+                _ => new MoveOntoEmptyCell(player, position)
             };
         }
     }
