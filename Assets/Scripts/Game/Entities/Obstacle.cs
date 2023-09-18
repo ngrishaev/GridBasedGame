@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Game.Entities
 {
     public class Obstacle: Entity
     {
