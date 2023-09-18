@@ -14,7 +14,7 @@ namespace Bootstrap
         {
             var game = new Game.Game();
             var level = game.Level;
-            var playerMover = new EntityMoveProcessor(level.Player, level.GameEntities);
+            var playerMover = new PlayerMover(level.Player, level.GameEntities);
             _input.Construct(playerMover);
             
             SpawnPlayer(level);
