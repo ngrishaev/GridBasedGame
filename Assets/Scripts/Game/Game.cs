@@ -38,7 +38,7 @@ namespace Game
 
             Boxes = new List<Box>()
             {
-                new Box(4, 3)
+                new Box(4, 3), new Box(5, 3)
             };
 
             GameEntities = new List<Entity>();

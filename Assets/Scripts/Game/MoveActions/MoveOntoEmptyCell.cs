@@ -1,4 +1,5 @@
-﻿using Game.Entities;
+﻿using System.Collections.Generic;
+using Game.Entities;
 using UnityEngine;
 
 namespace Game.MoveActions
@@ -17,26 +18,34 @@ namespace Game.MoveActions
         public override void Execute() => _movable.MoveTo(_newPosition);
     }
 
-    public class PushTargetFromPosition : MoveAction
+    public class TryPushTargetFromPosition : MoveAction
     {
         private readonly Vector2 _position;
         private readonly IMovable _pushableObject;
         private readonly IMovable _pushInitiator;
+        private readonly List<Entity> _entities;
 
-        public PushTargetFromPosition(Vector2 position, IMovable pushableObject, IMovable pushInitiator)
+        public TryPushTargetFromPosition(
+            Vector2 position,
+            IMovable pushableObject,
+            IMovable pushInitiator,
+            List<Entity> entities)
         {
             _position = position;
             _pushableObject = pushableObject;
             _pushInitiator = pushInitiator;
+            _entities = entities;
         }
         
         public override void Execute()
         {
             var initiatorPosition = _pushInitiator.Position;
             var pushingDirection = _position - initiatorPosition;
-            
-            _pushableObject.MoveTo(_position + pushingDirection);
-            _pushInitiator.MoveTo(_position);
+
+            var mp = new EntityMoveProcessor(_pushableObject, _entities);
+
+            if(mp.TryMove(_position + pushingDirection))
+                _pushInitiator.MoveTo(_position);
         }
     }
 }
