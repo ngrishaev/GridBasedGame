@@ -9,6 +9,14 @@ namespace Game.Entities
         void MoveTo(Vector2 newPosition);
         event Action Moved;
     }
+    
+    public interface IDamageable
+    {
+        int Health { get; }
+        public void TakeDamage(int damage);
+        event Action Damaged;
+        event Action Death;
+    }
 
     public class Player : Entity, IMovable
     {

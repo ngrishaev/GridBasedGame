@@ -15,7 +15,8 @@ namespace Bootstrap
             var game = new Game.Game();
             var level = game.Level;
             var playerMover = new PlayerMover(level.Player, level.GameEntities);
-            _input.Construct(playerMover);
+            var playerAttacker = new PlayerAttacker(level.Player, level.GameEntities);
+            _input.Construct(playerMover, playerAttacker);
             
             SpawnPlayer(level);
             SpawnObstacles(level);
@@ -31,6 +32,7 @@ namespace Bootstrap
                 boxView.Construct(box);
                 boxView.Draw();
                 box.Moved += boxView.Draw;
+                box.Death += boxView.DeathHandler;
             }
         }
 

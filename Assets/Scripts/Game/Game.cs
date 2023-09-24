@@ -16,7 +16,7 @@ namespace Game
     
     public class Level
     {
-        public readonly List<Entity> GameEntities;
+        public readonly List<Entity> GameEntities = new List<Entity>();
         public readonly Player Player;
         public List<Obstacle> Obstacles { get; set; }
         public List<Box> Boxes { get; set; }
@@ -38,10 +38,9 @@ namespace Game
 
             Boxes = new List<Box>()
             {
-                new Box(4, 3), new Box(5, 3)
+                new Box(4, 3, GameEntities), new Box(5, 3, GameEntities)
             };
-
-            GameEntities = new List<Entity>();
+            
             GameEntities.AddRange(Obstacles);
             GameEntities.AddRange(Boxes);
             GameEntities.Add(Player);

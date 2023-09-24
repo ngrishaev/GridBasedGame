@@ -18,5 +18,10 @@ namespace DriverSide.Views
         {
             _transform.position = new Vector3(_box.Position.x, _box.Position.y) + Vector3.one / 2;
         }
+
+        public void DeathHandler()
+        {
+            Destroy(gameObject);
+        }
     }
 }
