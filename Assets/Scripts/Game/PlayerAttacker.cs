@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Game.Entities;
-using UnityEngine;
 
 namespace Game
 {
@@ -45,6 +45,6 @@ namespace Game
         
         // TODO: Abstract X axis
         private bool IsWithinShootRange(Vector2 position, Vector2 shootPosition, int shootRange) => 
-            position.x > shootPosition.x && position.x < shootPosition.x + shootRange;
+            position.X > shootPosition.X && position.X < shootPosition.X + shootRange;
     }
 }
