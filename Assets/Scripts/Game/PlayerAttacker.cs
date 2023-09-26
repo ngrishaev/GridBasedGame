@@ -9,15 +9,11 @@ namespace Game
 {
     public class PlayerAttacker : IPlayerAttacker
     {
-        private const int Damage = 1;
         private readonly Player _player;
-        private readonly List<Entity> _entities;
-        private const int _shootRange = 3;
 
-        public PlayerAttacker(Player player, List<Entity> entities)
+        public PlayerAttacker(Player player)
         {
             _player = player;
-            _entities = entities;
         }
 
         
