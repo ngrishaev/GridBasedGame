@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using Game.Weapons;
 
 namespace Game.Entities
 {
@@ -22,6 +23,7 @@ namespace Game.Entities
     {
         public event Action Moved;
         public int Health { get; private set; }
+        public IWeapon CurrentWeapon { get; set; }
 
         public Player(int x, int y) : base(x, y)
         {

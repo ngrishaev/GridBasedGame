@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Game.Entities;
+using Game.Weapons;
 
 namespace Game
 {
@@ -19,37 +20,12 @@ namespace Game
             _entities = entities;
         }
 
-        public void ShootLeft() => Shoot(Direction.Left);
-        public void ShootRight() => Shoot(Direction.Right);
-        public void ShootUp() => Shoot(Direction.Up);
-        public void ShootDown() => Shoot(Direction.Down);
         
-        private void Shoot(Direction direction)
-        {
-            var target = _entities
-                .Where(e => IsWithinShootRange(e.Position, _player.Position, _shootRange, direction))
-                .OfType<IDamageable>()
-                .FirstOrDefault();
-
-            target?.TakeDamage(Damage);
-        }
+        // TODO: EmptyWeapon instead of "?"?
+        public void ShootLeft() => _player.CurrentWeapon?.Shoot(Direction.Left);
+        public void ShootRight() => _player.CurrentWeapon?.Shoot(Direction.Right);
+        public void ShootUp() => _player.CurrentWeapon?.Shoot(Direction.Up);
+        public void ShootDown() => _player.CurrentWeapon?.Shoot(Direction.Down); 
         
-        private bool IsWithinShootRange(Vector2 position, Vector2 shootPosition, int shootRange, Direction direction) =>
-            direction switch {
-                Direction.Right => position.X > shootPosition.X && position.X <= shootPosition.X + shootRange,
-                Direction.Up => position.Y > shootPosition.Y && position.Y <= shootPosition.Y + shootRange,
-                Direction.Down => position.Y < shootPosition.Y && position.Y >= shootPosition.Y - shootRange,
-                Direction.Left => position.X < shootPosition.X && position.X >= shootPosition.X - shootRange,
-                _ => throw new NotImplementedException()
-            };
-
-
-        private enum Direction
-        {
-            Up,
-            Down,
-            Left,
-            Right
-        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Game.Entities;
+using Game.Weapons;
 
 namespace Game
 {
@@ -24,6 +25,8 @@ namespace Game
         public Level()
         {
             Player = new Player(3, 3);
+            Player.CurrentWeapon = new Pistol(Player, GameEntities);
+            
             Obstacles = new List<Obstacle>
             {
                 new Obstacle(0, 0), new Obstacle(1, 0), new Obstacle(2, 0), new Obstacle(3, 0), new Obstacle(4, 0),
